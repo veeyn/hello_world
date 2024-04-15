@@ -29,6 +29,7 @@ If I had more time...
 * I would go over my terraform files and see which hard-coded values can be replaced with variables instead. (This can make updates to these variables to be a lot less complex.)
 * I would re-visit my terraform code to see if modules could be used for better organization and reusability.
 * If I wanted my application to be more scalable on AWS, I would add autoscaling. I could scale based on the number of requests per target, which could help with handling increased traffic.
+* Because my repository isn't a part of a team or enterprise, I was not able to configure branch protection. Ideally, I would require there to be an approver, other than myself, and would not allow merge to main unless the test job has succeeded.
 
 ## Endpoint
 To verify the output of GET /hello, you can visit this address on your browser: http://my-alb-33276149.us-east-1.elb.amazonaws.com/hello.
