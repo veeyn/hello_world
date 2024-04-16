@@ -15,7 +15,7 @@ This repository holds code to deploy a simple RESTful python flask application l
 7. Naivgate back to the root directory of the project to build and push a docker image.
 8. Visit the your private ECR within the console, click into your repository, select **View push commands** for the set of instructions required to build and push a docker image to your ECR.
 9. Within **terraform.tfvars**, update the image_tag to your tag value and add a new variable container_image and set it to your ECR URI.
-10. Navigate back to the terraform directory and enter **terraform plan** to view the rest of the resources we will deploy for ECS, followed by **terraform init**.
+10. Navigate back to the terraform directory and enter **terraform plan** to view the rest of the resources we will deploy for ECS, followed by **terraform apply**.
 11. The DNS name of the ALB should be outputted in your terminal, which you can then use to test the application. Simply place the DNS into your browser and append /hello. You should see a "Hello world" message.
 
 ## Architectural Decisions
@@ -41,7 +41,7 @@ For this project, deploying a new ECS with a new image will require an update to
 Being that this was my first time launching an application into AWS - I initially tested within the console manually, so that I had a POC of a working application for myself. If I could go back in time and re-do this project, I would've used Terraform alongside my POC. Using Terraform allowed to me to clean up my resources more efficiently. However, experimenting first with the console allowed me to understand and visually see which inputs I needed to configure within Terraform. I did face challenges understanding how VPC endpoints worked and what ingress/egress rules to define to be able to use these endpoints. How I tackled this challenge was using the default security group and adding rules one a time and re-deployed my ECS service to validate if the containers were successfully launched.
 </br></br>
 If I had more time...
-* I would set up Gitlab OIDC and use the best practice of assuming a role vs. using long term credentials, which this project is currently using. I followed a Automate Terraform with Github tutorial from Hashicorp, which used an IAM user, so I decided to do the same. (https://developer.hashicorp.com/terraform/tutorials/automation/github-actions)
+* I would set up Gitlab OIDC and use the best practice of assuming a role vs. using long term credentials, which this project is currently using. I followed a Automate Terraform with Github tutorial from Hashicorp which used an IAM user, so I decided to do the same. (https://developer.hashicorp.com/terraform/tutorials/automation/github-actions)
 * I would go over my terraform files and see which hard-coded values can be replaced with variables instead. (This can make updates to these variables to be a lot less complex.)
 * I would re-visit my terraform code to see if modules could be used for better organization and reusability.
 * If I wanted my application to be more scalable on AWS, I would add autoscaling. I could scale based on the number of requests per target, which could help with handling increased traffic.
