@@ -13,6 +13,11 @@ resource "aws_lb" "my_alb" {
 
 }
 
+output "alb_dns_name" {
+  value = aws_lb.my_alb.dns_name
+  description = "The DNS name of the ALB"
+}
+
 resource "aws_lb_target_group" "alb_target_group" {
   name     = "alb-target-group"
   port     = 8888
